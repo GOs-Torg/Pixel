@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <include resource="smtp-appender.xml" />
+    <!-- Define appenders -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>Info</level>
+        </filter>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="STDOUT_Fatal" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>FATAL</level>
+        </filter>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="STDOUT_Error" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/logfile.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE_FATAL" class="ch.qos.logback.core.FileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>FATAL</level>
+        </filter>
+        <file>./logs/fatal_logfile.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+
+    <!-- Define loggers -->
+    <logger name="com.example.pixelapi" level="info" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="EMAIL"/>
+        <appender-ref ref="STDOUT_Error"/>
+    </root>
+
+</configuration>
