@@ -41,8 +41,8 @@ public class DBController {
         }
         return null;
     }
-    public <T> Long addToTable(String tableName, T object){
-        Long id = 1l;
+    public <T> int addToTable(String tableName, T object){
+        int id = 1;
         Class<?> newClass = object.getClass();
         try {
             try {
@@ -53,7 +53,7 @@ public class DBController {
                 String querySel = "SELECT " + field[0].getName() + " FROM " + tableName + " ORDER BY " + field[0].getName() + " DESC";
                 ResultSet resSet = runQuery(querySel);
                 if (resSet.next()){
-                    id = resSet.getLong(1) + 1l;
+                    id = resSet.getInt(1) + 1;
                 }
                 int i = 0;
                 field[0].set(object, id);
@@ -88,10 +88,10 @@ public class DBController {
         finally {
 
         }
-        return -1l;
+        return -1;
     }
-    public <T> Long addToTableNoLogs(String tableName, T object){
-        Long id = 1l;
+    public <T> int addToTableNoLogs(String tableName, T object){
+        int id = 1;
         Class<?> newClass = object.getClass();
         try {
             try {
@@ -102,7 +102,7 @@ public class DBController {
                 String querySel = "SELECT " + field[0].getName() + " FROM " + tableName + " ORDER BY " + field[0].getName() + " DESC";
                 ResultSet resSet = runQuery(querySel);
                 if (resSet.next()){
-                    id = resSet.getLong(1) + 1l;
+                    id = resSet.getInt(1) + 1;
                 }
                 int i = 0;
                 field[0].set(object, id);
@@ -135,7 +135,7 @@ public class DBController {
         finally {
 
         }
-        return -1l;
+        return -1;
     }
 
     public <T> void updateTable(String tableName, T object){
@@ -174,6 +174,17 @@ public class DBController {
             runQuery(query);
             //Loggers log = new Loggers(0l, query.replace('(', ' ').replace(')', ' ').replace(',', ' ').replace('\'', ' '),LocalDateTime.now().toLocalDate().toString());
             //addToTableNoLogs("Loggers", log);
+        }
+        catch (Exception e){logger.error(e.getMessage());}
+        finally {
+        }
+    }
+    public <T> void deleteCustomTable(String tableName, String condition){
+        try {
+            String query = "DELETE FROM " + tableName + " WHERE " + condition;
+            query = query.replace("'null'","null");
+            logger.info(query);
+            runQuery(query);
         }
         catch (Exception e){logger.error(e.getMessage());}
         finally {

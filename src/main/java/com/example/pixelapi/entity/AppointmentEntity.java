@@ -1,23 +1,21 @@
 package com.example.pixelapi.entity;
 
-import java.util.Date;
+public class AppointmentEntity {
+    private int id_appointment;
+    private String name;
+    private String lesson;
+    private String hours;
+    private String minutes;
+    private String day;
+    private String date;
+    private int max_users;
+    private int teacher_id;
+    private int sgroup_id;
 
+    public AppointmentEntity() {
+    }
 
-public class Appointment {
-     private int id_appointment;
-     private String name;
-     private int lesson;
-     private String hours;
-     private String minutes;
-     private String day;
-     private Date date;
-     private int max_users;
-     private int teacher_id;
-     private int active_num;
-     private String employee_name;
-     private int sgroup_id;
-
-    public Appointment(int id_appointment, String name, int lesson, String hours, String minutes, String day, Date date, int max_users, int teacher_id, int active_num, String employee_name, int sgroup_id) {
+    public AppointmentEntity(int id_appointment, String name, String lesson, String hours, String minutes, String day, String date, int max_users, int teacher_id, int sgroup_id) {
         this.id_appointment = id_appointment;
         this.name = name;
         this.lesson = lesson;
@@ -27,8 +25,6 @@ public class Appointment {
         this.date = date;
         this.max_users = max_users;
         this.teacher_id = teacher_id;
-        this.active_num = active_num;
-        this.employee_name = employee_name;
         this.sgroup_id = sgroup_id;
     }
 
@@ -48,11 +44,11 @@ public class Appointment {
         this.name = name;
     }
 
-    public int getLesson() {
+    public String getLesson() {
         return lesson;
     }
 
-    public void setLesson(int lesson) {
+    public void setLesson(String lesson) {
         this.lesson = lesson;
     }
 
@@ -80,11 +76,11 @@ public class Appointment {
         this.day = day;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -102,22 +98,6 @@ public class Appointment {
 
     public void setTeacher_id(int teacher_id) {
         this.teacher_id = teacher_id;
-    }
-
-    public int getActive_num() {
-        return active_num;
-    }
-
-    public void setActive_num(int active_num) {
-        this.active_num = active_num;
-    }
-
-    public String getEmployee_name() {
-        return employee_name;
-    }
-
-    public void setEmployee_name(String employee_name) {
-        this.employee_name = employee_name;
     }
 
     public int getSgroup_id() {
